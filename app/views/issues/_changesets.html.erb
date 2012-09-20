@@ -3,7 +3,12 @@
     <% if changeset.repository.project != @issue.project %>
     	<p><%= l(:label_project) + ": " %> <%= link_to_project(changeset.repository.project) %><br>
    	<% end %>
-    <%= l(:label_repository) + ": " + changeset.repository.name unless changeset.repository.name.empty? %>
+    <%= l(:label_repository) + ":" %>  
+    <%= link_to h(changeset.repository.name), 
+                  {:controller => 'repositories', :action => 'show',
+                   :id => changeset.repository.project.id, :repository_id => changeset.repository.identifier_param, :rev => nil, :path => nil}
+    %>
+                  
     <br /><%= link_to_revision(changeset, changeset.repository,
                             :text => "#{l(:label_revision)} #{changeset.format_identifier}") %><br />
         <span class="author"><%= authoring(changeset.committed_on, changeset.author) %></span></p>
