@@ -11,7 +11,6 @@ module GitAdapterPatch
   
   module InstanceMethods
     def commit_branches(id)
-      return @commit_branches if @commit_branches
       begin
         @commit_branches = []
         cmd_args = %w|branch --no-color --verbose --no-abbrev|
